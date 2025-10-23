@@ -1,1 +1,3 @@
-*~
+*
+!.gitignore
+!knight_moves.rb
