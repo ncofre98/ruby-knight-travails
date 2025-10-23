@@ -10,21 +10,13 @@ Square = Struct.new(:x, :y) do
   end
 end
 
-def possible_jumps(square)
-  jumps = []
-  DISPLACEMENTS.each do |d|
-    x = square.x + d[0]
-    y = square.y + d[1]
-    if x.between?(0, 7) && y.between?(0, 7)
-      jumps << Square.new(x, y)
-    end
+def jumps(square)
+  DISPLACEMENTS.filter_map do |dx, dy|
+    x = square.x + dx
+    y = square.y + dy
+    Square.new(x, y) if (0..7).cover?(x) && (0..7).cover?(y)
   end
-
-  jumps
 end
 
-possible_jumps(Square.new(7, 7)).each { |s| puts s }
-
-def knight_moves
-  
+def knight_moves(origin, target)
 end
