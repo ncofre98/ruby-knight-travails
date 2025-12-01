@@ -28,12 +28,14 @@ def knight_moves(origin, target)
   return if [origin, target].any? { |square| !inside_board?(square) }
 
   queue = [[origin]]
-  current_square = origin
   visited = []
   
-  while current_square != target
+  loop do
     current_path = queue.shift
     current_square = current_path.last
+    
+    return current_path if current_square == target
+    
     visited << current_square
     available_jumps = jumps(current_square, visited)
 
@@ -43,6 +45,4 @@ def knight_moves(origin, target)
       end
     end
   end
-
-  queue.select { |path| path.include?(target) }
 end
