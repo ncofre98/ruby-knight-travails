@@ -39,11 +39,10 @@ def knight_moves(origin, target)
 
     if available_jumps && !available_jumps.empty?
       available_jumps.each do |new_square|
-        binding.pry
         queue << (current_path + [new_square])
       end
     end
   end
 
-  queue
+  queue.select { |path| path.include?(target) }
 end
